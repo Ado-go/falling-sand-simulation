@@ -103,9 +103,6 @@ class Simulation{
                 if(this.particles[newY][newX].updated == this.updated){
                     continue
                 }
-                else{
-                    this.particles[newY][newX].updated = !this.particles[newY][newX].updated
-                }
 
                 if(this.particles[newY][newX].effect == "flammable"){
                     for(let i=-1; i<2; i++){
