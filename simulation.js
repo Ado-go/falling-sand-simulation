@@ -8,7 +8,7 @@ class Simulation{
     elements = {
         0: new Particle("SAND", "yellow", 5, "sand", new Traits(0, 10)),
         1: new Particle("SALT", "#D6E2E6", 5, "sand", new Traits(0, 10)),
-        2: new Particle("WATER", "lightblue", 3, "water",new Traits(0, 10), "extinguishable"),
+        2: new Particle("WATER", "lightblue", 3, "water",new Traits(0, 10)),
         3: new Particle("BLOCK", "black", 50, null),
         4: new Particle("OIL", "#5e5248", 2, "water", new Traits(8, 10)),
         5: new Particle("ASH", "#cfcac6", 2.5, "sand", new Traits(0, 10)),
