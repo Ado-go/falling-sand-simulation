@@ -1,59 +1,37 @@
-# falling-sand-simulation
-This project is a simple falling-sand game. It is a sandbox where you can put \
-some elements into Canvas and see them interact with each other.
+# Falling-sand-simulation
+This project is a simple falling-sand game. It is a sandbox where
+you can place elements onto the canvas and see them interact with each other.
+
+# Installation
+open Index.html
 
 # Elements
-There are 12 elements type.
+There are 12 element types:
 
-SAND, SALT, WATER, BLOCK, OIL, ASH, SMOKE, AIR, \
+SAND, SALT, WATER, BLOCK, OIL, ASH, SMOKE, AIR,
 FIRE, ACID, FUSE, BRICK
 
-Every element is a particle Class.
+Each element is a particle class.
 
-Every particle has these fields:
+Every particle has the following fields:
 
-** Type ** - the name of the particle, must be unique 
-\
-\
-** Color ** - the color of the particle, this color will be used on the canvas
-\
-\
-** Physic ** - how a particle moves essentially, like sand, water, and so on.
-\
-\
-** Level ** - level determines which particle will be on top. If the particle is going down and right under it is a particle with 
-lower level (lower number) they will change place. 
-\
-\
-** Lifetime ** - some particles live only a certain amount of time and after that, they are replaced 
-\
-\
-** LifeTimeUpdate ** - Stores whether particle lifetime was updated,  
-this is checked against the simulation updated and the same value means it was updated 
-\
-\
-** Replace ** - a particle that will replace this particle after Lifetime hits zero.  
-\
-\
-** Updated ** - Stores whether particle position was updated,  
-this is checked against the simulation updated and the same value means it was updated 
-\
-\
-** LeftDirection ** - certain elements move from side to side, water for example is one. this field 
-determines if it goes first into right or left and if it cannot go there it switches to false or true based on the previous value 
-and try the other side. 
-\
-\
-** Traits ** - Traits (explained below) 
-\
-\
-** Effect ** - this value is one of the Trait names. flammable tries to  \
-put other particles on fire. The acid will destroy everything that touches it except for the block.
+| **Field**          | **Description**                                                                                                                  |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**           | The name of the particle; must be unique.                                                                                        |
+| **Color**          | The color of the particle; this color will be used on the canvas.                                                                |
+| **Physic**         | Defines how the particle moves (e.g., like sand, water, etc.).                                                                   |
+| **Level**          | Determines which particle will be on top. If a particle moves down and the particle below has a lower level (number), they swap. |
+| **Lifetime**       | Some particles live only a certain amount of time; after that, they are replaced.                                                |
+| **LifetimeUpdate** | Stores whether the particle’s lifetime was updated; checked against the simulation update (same value means updated).            |
+| **Replace**        | The particle that replaces this particle after lifetime hits zero.                                                               |
+| **Updated**        | Stores whether the particle’s position was updated; checked against the simulation update (same value means updated).            |
+| **LeftDirection**  | Certain elements move side to side (e.g., water). Determines if it tries right or left first; switches if blocked.               |
+| **Traits**         | Traits of the particle (explained elsewhere).                                                                                    |
+| **Effect**         | One of the trait names; e.g., “flammable” tries to set other particles on fire, acid destroys everything except blocks.          |
 
 # Traits
-There are 2 types of traits. flammable or acid (dissolve in acid). \
-every particle has some chance to burst into flames or be dissolved in acid. The default for both is 0.
+There are 2 types of traits: flammable and acid (dissolves in acid).
+Every particle has a certain chance to burst into flames or be dissolved by acid. The default chance for both is 0.
 
 # How to play
-just click on any element under Canvas and click into Canvas and place the particle into \
-the simulation. AIR particle works like an eraser
+Just click on any element below the canvas, then click on the canvas to place the particle into the simulation. The AIR particle works like an eraser.
