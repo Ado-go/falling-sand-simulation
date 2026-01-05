@@ -1,11 +1,14 @@
 # Falling-sand-simulation
+
 This project is a simple falling-sand game. It is a sandbox where
 you can place elements onto the canvas and see them interact with each other.
 
 # Installation
+
 open Index.html
 
 # Elements
+
 There are 12 element types:
 
 SAND, SALT, WATER, BLOCK, OIL, ASH, SMOKE, AIR,
@@ -30,8 +33,10 @@ Every particle has the following fields:
 | **Effect**         | One of the trait names; e.g., “flammable” tries to set other particles on fire, acid destroys everything except blocks.          |
 
 # Traits
+
 There are 2 types of traits: flammable and acid (dissolves in acid).
 Every particle has a certain chance to burst into flames or be dissolved by acid. The default chance for both is 0.
 
 # How to play
+
 Just click on any element below the canvas, then click on the canvas to place the particle into the simulation. The AIR particle works like an eraser.
