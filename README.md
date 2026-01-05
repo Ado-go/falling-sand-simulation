@@ -5,7 +5,7 @@ you can place elements onto the canvas and see them interact with each other.
 
 # Installation
 
-open Index.html
+open index.html
 
 # Elements
 
