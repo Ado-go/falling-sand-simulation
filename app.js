@@ -1,11 +1,13 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 
-canvas.addEventListener("mousedown", startdrawParticle);
-canvas.addEventListener("mouseup", stopdrawParticle);
-canvas.addEventListener("mousemove", mouseMove);
-canvas.addEventListener("mouseleave", stopdrawParticle);
-canvas.addEventListener("mousedown", pickElement);
+let currentEvent = null;
+
+canvas.addEventListener("pointerdown", startdrawParticle);
+canvas.addEventListener("pointerup", stopdrawParticle);
+canvas.addEventListener("pointermove", mouseMove);
+canvas.addEventListener("pointerleave", stopdrawParticle);
+canvas.addEventListener("pointerdown", pickElement);
 
 let simulation = new Simulation(700, 400);
 simulation.particles = simulation.make2Darray();
@@ -13,24 +15,22 @@ simulation.oldFrame = simulation.make2Darray();
 simulation.initialDraw();
 
 function startdrawParticle(evt) {
-  if (evt.button == 0) {
+  if (evt.isPrimary) {
     simulation.drawing = true;
-    simulation.particleDrawingInterval = setInterval(drawParticle, 1, evt);
+    currentEvent = evt;
+    simulation.particleDrawingInterval = setInterval(drawParticle, 1);
   }
 }
 
 function stopdrawParticle(evt) {
-  if (evt.button == 0) {
+  if (evt.isPrimary) {
     simulation.drawing = false;
     clearInterval(simulation.particleDrawingInterval);
   }
 }
 
 function mouseMove(evt) {
-  if (simulation.drawing) {
-    clearInterval(simulation.particleDrawingInterval);
-    simulation.particleDrawingInterval = setInterval(drawParticle, 1, evt);
-  }
+  currentEvent = evt;
 }
 
 function pickElement(evt) {
@@ -50,28 +50,32 @@ function pickElement(evt) {
   }
 }
 
-function drawParticle(evt) {
-  if (evt.clientX < 0 || evt.clientY < 0) {
+function drawParticle() {
+  if (!currentEvent) return;
+
+  if (currentEvent.clientX < 0 || currentEvent.clientY < 0) {
     return;
   }
   if (
-    Math.floor(evt.clientX / simulation.resolution) >=
+    Math.floor(currentEvent.clientX / simulation.resolution) >=
       Math.floor(simulation.width / simulation.resolution) ||
-    Math.floor(evt.clientY / simulation.resolution) >=
+    Math.floor(currentEvent.clientY / simulation.resolution) >=
       Math.floor(simulation.height / simulation.resolution)
   ) {
     return;
   }
   if (
     simulation.drawing &&
-    (simulation.particles[Math.floor(evt.clientY / simulation.resolution)][
-      Math.floor(evt.clientX / simulation.resolution)
-    ].type == "AIR" ||
+    (simulation.particles[
+      Math.floor(currentEvent.clientY / simulation.resolution)
+    ][Math.floor(currentEvent.clientX / simulation.resolution)].type == "AIR" ||
       simulation.element.type == "AIR")
   ) {
-    simulation.particles[Math.floor(evt.clientY / simulation.resolution)][
-      Math.floor(evt.clientX / simulation.resolution)
-    ].changeParticle(simulation.element);
+    simulation.particles[
+      Math.floor(currentEvent.clientY / simulation.resolution)
+    ][Math.floor(currentEvent.clientX / simulation.resolution)].changeParticle(
+      simulation.element
+    );
   }
 }
 
