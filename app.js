@@ -30,7 +30,7 @@ function getCanvasCoordinates(evt) {
 }
 
 canvas.width = 700;
-canvas.height = 700;
+canvas.height = 460;
 
 let simulation = new Simulation(700, 400);
 simulation.particles = simulation.make2Darray();
